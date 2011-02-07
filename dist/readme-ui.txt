@@ -1,6 +1,6 @@
 RichFaces - Ajax enabled JSF 2.0 component library
 =========================================================
-Version 4.0.0.M5
+Version 4.0.0.M6
 
 This software is distributed under the terms of the FSF Lesser Gnu Public License (see lgpl.txt). 
 
@@ -13,7 +13,7 @@ Getting up and running quickly
 	1.3)  richfaces-components-api.jar
 	1.4)  richfaces-components-ui.jar
 	1.5)  sac-1.3, cssparser-0.9.5 - required for components CSS work
-	1.6)  google-guava-r06 - core runtime dependency.
+	1.6)  google-guava-r08 - core runtime dependency.
 	1.7)  annotations.jar from org.richfaces.cdk
 	    - It's optional and only needs to be added if RichFaces components will be 
 	      created/accessed dynamically in your apps actions/listeners. 
@@ -29,7 +29,7 @@ please refer to the documentation)
    Use xmlns:a4j="http://richfaces.org/a4j" namespace for core components
    Use xmlns:rich="http://richfaces.org/rich" namespace for rich components
 
-4) Add one of the available RichFaces 4.0.M5 components to your page and try it!
+4) Add one of the available RichFaces 4.0.M6 components to your page and try it!
 4.1) Take a look at the RichFaces examples for assistance with usage.
 
 Available Components/Behaviors/Tags/Functions
@@ -100,6 +100,7 @@ rich:panelMenuItem
 rich:progressBar
 rich:tooltip
 rich:message
+rich:messages
 
 ---------------------------------
 Menus:
