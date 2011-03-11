@@ -11,7 +11,7 @@
 ========================================================================
 
 RichFaces 4 is a component library for JSF2 and an advanced framework for
-easily integrating AJAX capabilities into business applications.
+easily integrating AJAX capabilities into enterprise applications.
 
 This file explains how to set up the RichFaces examples bundled with the
 distribution package. If you find any issue with the project, please report 
@@ -27,7 +27,7 @@ SETTING UP THE EXAMPLES
     In order to build the Examples applications you will need:
        - Maven 2.1.0 or later
        - Servers: Apache Tomcat 6.0 or any JEE6 application server 
-       	 (e.g. Jboss AS 6)
+       	 (e.g. Jboss AS 6/7)
        - JDK 1.6
 
     Also optional Additional Software would make it easy for you to work 
@@ -83,10 +83,10 @@ publish the application to Google Application Engine.
 USING AN IDE TO WORK WITH EXAMPLES
 ----------------------------------
 
-In order to explore, run and deploy the examples using Eclipse IDE you can use 
+In order to explore, run and deploy the examples using Eclipse IDE you use 
 one of the following options:
     
-    - You could use JBoss Tools with m2eclipse plugin and just import 
+    - JBoss Tools with m2eclipse plugin and just import 
       the examples as maven-based projects.
       	  * Open Eclipse and go to File > Import
 	  * Expand the project type named Maven and select Import Maven 
@@ -114,7 +114,7 @@ MORE INFORMATION AND RESOURCES
 For more information on RichFaces 4, please visit RichFaces 
 website at:
 
-    - http://www.jboss.org/richfaces.
+    - http://richfaces.org
 
 Or check the Wiki for more information on build instructions for the examples at:
 
