@@ -11,9 +11,9 @@
 ========================================================================
 
 RichFaces 4 is a component library for JSF2 and an advanced framework for
-easily integrating AJAX capabilities into business applications.
+easily integrating AJAX capabilities into enterprise applications.
 
-This file explains how to obtain and install the RichFaces component 
+This file explains how to get started and install the RichFaces component 
 library. If you find any issue with the project, please report the issue
 on the RichFaces user forum (http://community.jboss.org/en/richfaces) 
 or jira (https://issues.jboss.org/browse/RF).
@@ -22,11 +22,11 @@ or jira (https://issues.jboss.org/browse/RF).
 FEATURES
 --------
 
-    - 100+ AJAX enabled components in two libraries.
+    - Many AJAX enabled components in two libraries.
            * a4j page centric AJAX controls.
            * rich self contained, ready to use components.
-    - Whole set of JSF2 benefits while working with AJAX.
-    - Skinnability mechanism.
+    - Complete JSF2 support with advanced extentions
+    - Easily skin your entire application
     - Component Development Kit (CDK).
     - Dynamic resource handling.
     - Testing facilities for components, actions, listeners and pages
@@ -60,7 +60,7 @@ SETTING UP YOUR PROJECT
           richfaces-components-ui-4.x.jar to your application libraries 
           folder.
 
-        - From 'framerok' directory: Copy richfaces-core-api-4.x.jar and
+        - From 'framework' directory: Copy richfaces-core-api-4.x.jar and
           richfaces-core-impl-4.x.jar to your application libraries folder.
     
     In addition to the RichFaces jars, a number of dependencies are 
@@ -82,6 +82,8 @@ SETTING UP YOUR PROJECT
             Validation. Should be added only if it's not provided by a 
             server (Java EE 6 servers).
 
+    For the latest updates, and information on this please see:
+    http://community.jboss.org/docs/DOC-16484
 
     2. Using Maven
     
@@ -96,7 +98,7 @@ to application classpath: EhCache, JBoss Cache, OsCache.
 GETTING STARTED
 ---------------
 
-1. After setting up the project to use RichFaces component library, no 
+1. Aside from the steps above to use RichFaces component library, no 
    special configuration steps are necessary. You don't need to modify 
    web.xml or faces-config.xml as with previous versions of RichFaces, 
    except for a4j:push component that requires additional configuration 
@@ -115,7 +117,6 @@ GETTING STARTED
    Getting Started Guide at http://community.jboss.org/wiki/GettingStartedWithRichFaces4x
 
 
-
 MORE INFORMATION AND RESOURCES
 ------------------------------
 
@@ -123,7 +124,7 @@ For more information on RichFaces 4 features, how to migrate from
 previous versions, and answers to the most frequently asked questions (FAQ),
 please visit RichFaces website at:
 
-http://www.jboss.org/richfaces.
+http://www.jboss.org/richfaces
 
 Or the Wiki at:
 
@@ -136,7 +137,7 @@ project's Jira at:
 
 Community support and help can be obtained from the RichFaces forums at:
 
-    - http://community.jboss.org/en/richfaces?view=discussions
+    - http://community.jboss.org/en/richfaces
 
 Also you can follow us on Twitter at:
     
