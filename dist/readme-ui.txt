@@ -2,7 +2,7 @@
 
                       RichFaces - Ajax enabled JSF 2.0 component library
 
-                                                       RichFaces 4.0.CR1
+                                                     RichFaces 4.0.Final
                                           http://www.jboss.org/richfaces
                                                               March 2011
                      This software is distributed under the terms of the 
@@ -291,6 +291,29 @@ Validation:
 ---------------------------------
 rich:validator
 rich:graphValidator
+
+
+New in Version 4.0.Final
+----------------------
+    - Found more Taglib's problems during QE and made corresponding corrections for better IDE support 
+      https://issues.jboss.org/browse/RF-9936
+    - Thorough review for all the component attributes done and corrections for not working ones were made. 
+    - Bugfixing for CSV and Object Validation features. 
+    - Refactoring Listeners classes, methods and Event names according to standard JSF convention.
+      https://issues.jboss.org/browse/RF-10712
+    - Review and update predefined rf-* CSS classes for components to satisfy naming convention 
+      https://issues.jboss.org/browse/RF-9290
+    - TreeNode and TreeDataModel models support for rich:tree added.
+      https://issues.jboss.org/browse/RF-9718
+    - jQuery updated to 1.5.1. https://issues.jboss.org/browse/RF-10686
+    - richfaces-showcase design corrections at most. 
+      Most important application change - reviewed current state for different JSF environments support and 
+      finalized pom.xml profiles for: 
+          richfaces-showcase (Mojara 2.0.3 - GAE build, Mojara 2.0.4 default build) 
+          richfaces-archetype-simpleapp (Mojara 2.0.4 default build)
+          rf-gae-sample archetype (MyFaces 2.0.4 both GAE and default builds)
+    - Completed Push component demo - irc-sample.
+
 
 
 New in Version 4.0.CR1
