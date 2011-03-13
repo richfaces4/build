@@ -2,8 +2,8 @@
 
                       RichFaces - Ajax enabled JSF 2.0 component library
 
-                                                     RichFaces 4.0.Final
-                                          http://www.jboss.org/richfaces
+                                                   RichFaces 4.0.0.Final
+                                                    http://richfaces.org
                                                               March 2011
                      This software is distributed under the terms of the 
                             FSF Lesser Gnu Public License (see lgpl.txt)
@@ -295,33 +295,34 @@ rich:graphValidator
 
 New in Version 4.0.Final
 ----------------------
-    - Found more Taglib's problems during QE and made corresponding corrections for better IDE support 
-      https://issues.jboss.org/browse/RF-9936
-    - Thorough review for all the component attributes done and corrections for not working ones were made. 
-    - Bugfixing for CSV and Object Validation features. 
-    - Refactoring Listeners classes, methods and Event names according to standard JSF convention.
+
+    - Minor, low risk stabilizations, and clean up tasks for the Final build to minimize risk.
+    - Thorough review of all the component attributes done and corrections were made based on complexity. 
+    - Bug fixing for CSV and Object Validation features. 
+    - Refactored Listeners classes, methods and Event names according to standard JSF convention.
       https://issues.jboss.org/browse/RF-10712
     - Review and update predefined rf-* CSS classes for components to satisfy naming convention 
       https://issues.jboss.org/browse/RF-9290
-    - TreeNode and TreeDataModel models support for rich:tree added.
+    - TreeNode and TreeDataModel model support for rich:tree added.
       https://issues.jboss.org/browse/RF-9718
     - jQuery updated to 1.5.1. https://issues.jboss.org/browse/RF-10686
-    - richfaces-showcase design corrections at most. 
-      Most important application change - reviewed current state for different JSF environments support and 
+    - Several taglib issues found during QE and made corresponding corrections for better IDE support 
+      https://issues.jboss.org/browse/RF-9936
+    - RichFaces showcase design corrections 
+    - Reviewed current state of RichFaces showcase in different JSF environments support and 
       finalized pom.xml profiles for: 
           richfaces-showcase (Mojara 2.0.3 - GAE build, Mojara 2.0.4 default build) 
           richfaces-archetype-simpleapp (Mojara 2.0.4 default build)
           rf-gae-sample archetype (MyFaces 2.0.4 both GAE and default builds)
-    - Completed Push component demo - irc-sample.
-
+    - Completed Push component demo - irc-sample, with blog and documents before release
 
 
 New in Version 4.0.CR1
 ----------------------
 
-    - Finally completed with Taglib's corrections for better IDE support 
+    - Completed nearly all taglib's corrections for better IDE support 
       https://issues.jboss.org/browse/RF-9936
-    - Stabilized CSV feature with messages, localization and customization 
+    - Stabilized the CSV feature with messages, localization and customization 
       improvements https://issues.jboss.org/browse/RF-10556
       https://issues.jboss.org/browse/RF-10434 https://issues.jboss.org/browse/RF-10611
     - Stabilized messages components https://issues.jboss.org/browse/RF-10293 
@@ -334,7 +335,7 @@ New in Version 4.0.CR1
     - A lot of stabilization issues for MyFaces support got resolved
     - Environment updates: JQuery 1.5, MyFaces 2.0.4, Mojara 2.0.4, Atmosphere 0.6.4
     - RichFaces showcase has been updated with new design (https://issues.jboss.org/browse/RF-9636) 
-      and now runs under myFaces stable!
+      and now runs stable with MyFaces!
 
 
 New in Version 4.0.M6
@@ -354,13 +355,12 @@ New in Version 4.0.M6
     - All the richfaces components client side API are reviewed and stabilized. 
       API Tables will be documented soon in the component reference.
     - Further review and corrections in components for improving IDE's support.
-    - richfaces-showcase demo application is updated with new showcases for 
+    - RichFaces showcase demo application is updated with new showcases for 
       validation components and new examples for previously released components.
     - Further improvements in Component Development Kit.
     - Stabilization works for migrated code. Automation tests with quint, junit. 
       Review of attributes and facets for consistency and stability are done 
       and most issues get fixed.
-
-   
+      
 
 ###
