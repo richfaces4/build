@@ -107,6 +107,14 @@ one of the following options:
 
 You are now able to work with the examples within Eclipse.
 
+PUSH COMPONENT EXAMPLE
+------------------------------
+
+We've completed the Push feature sample "irc-client" prior to release but there were not enough
+time in order to include into the distribution. So currently you could check out 
+it from svn at http://anonsvn.jboss.org/repos/richfaces/branches/4.0.X/examples/irc-client .
+It contains separate readme file which describes build and additional settings required.
+We will add it to distribution in the next releases.
 
 MORE INFORMATION AND RESOURCES
 ------------------------------
