@@ -1,20 +1,19 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <parent>
         <groupId>org.richfaces</groupId>
         <artifactId>richfaces-parent</artifactId>
-        <version>10</version>
+        <version>11</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.richfaces</groupId>
     <artifactId>richfaces-root-aggregator</artifactId>
-    <version>4.0.0.Final</version>
+    <version>4.1.0.20110805-M1</version>
     <packaging>pom</packaging>
     <name>Richfaces Aggregator</name>
-
-    
 
     <build>
         <plugins>
@@ -26,39 +25,43 @@
         </plugins>
     </build>
 
-    <profiles>
-        
-        
-    <profile><id>build</id><modules>
+    <modules>
         <module>bom</module>
         <module>parent</module>
-        <module>../core</module>
-        <module>../cdk</module>
+    </modules>
 
-        
-        <module>../components</module>
-
-        
-        <module>../archetypes</module>
-        <module>../dev-examples</module>
-        
-    <module>../showcase</module></modules></profile><profile>
+    <profiles>
+        <profile>
             <id>bootstrap</id>
             <modules>
                 <module>../parent</module>
                 <module>../checkstyle</module>
                 <module>../shade-transformers</module>
+		<module>../vdl-doc</module>
             </modules>
-        </profile><profile>
+        </profile>
+        <profile>
+            <id>build</id>
+            <modules>
+                <module>../core</module>
+                <module>../cdk</module>
+                <module>../components</module>
+                <module>../archetypes</module>
+                <module>../dev-examples</module>
+                <module>../showcase</module>
+            </modules>
+        </profile>
+        <profile>
             <id>release</id>
             <modules>
                 <module>dist</module>
             </modules>
-        </profile></profiles>
+        </profile>
+    </profiles>
 
     <scm>
-        <connection>scm:svn:http://anonsvn.jboss.org/repos/richfaces/tags/4.0.0.20110319-Final</connection>
-        <developerConnection>scm:svn:https://svn.jboss.org/repos/richfaces/tags/4.0.0.20110319-Final</developerConnection>
-        <url>http://fisheye.jboss.org/browse/richfaces/tags/4.0.0.20110319-Final</url>
+        <connection>scm:git:git://github.com/richfaces/build.git</connection>
+        <developerConnection>scm:git:git@github.com:richfaces/build.git</developerConnection>
+        <url>https://github.com/richfaces/build</url>
     </scm>
 </project>
