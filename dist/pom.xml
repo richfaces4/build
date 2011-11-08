@@ -25,15 +25,13 @@
     <parent>
         <groupId>org.richfaces</groupId>
         <artifactId>richfaces-root-parent</artifactId>
-        <version>4.1.0.20111014-M3</version>
+        <version>4.1.0-SNAPSHOT</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
-    <groupId>org.richfaces</groupId>
     <artifactId>richfaces-distribution</artifactId>
-    <version>4.1.0.20111014-M3</version>
     <packaging>pom</packaging>
-    <name>Richfaces Distribution Assembler</name>
+    <name>RichFaces Distribution Assembler</name>
 
     <properties>
     </properties>
@@ -58,13 +56,6 @@
         </dependency>
 
         <!-- Examples -->
-        <dependency>
-            <groupId>org.richfaces.examples</groupId>
-            <artifactId>core-demo</artifactId>
-            <version>${project.version}</version>
-            <type>war</type>
-            <classifier>tomcat6</classifier>
-        </dependency>
         <dependency>
             <groupId>org.richfaces.examples</groupId>
             <artifactId>richfaces-showcase</artifactId>
@@ -169,12 +160,12 @@
 
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2-beta-4</version>
                 <executions>
                     <execution>
                         <configuration>
-                            <finalName>richfaces-${version}</finalName>
+                            <finalName>richfaces-${project.version}</finalName>
                             <descriptor>richfaces.xml</descriptor>
+                            <appendAssemblyId>false</appendAssemblyId>
                         </configuration>
                         <id>richfaces</id>
                         <phase>package</phase>
