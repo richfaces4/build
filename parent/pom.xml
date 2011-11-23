@@ -35,10 +35,34 @@
     <properties>
         <richfaces.checkstyle.version>3</richfaces.checkstyle.version>
         <test-jsf.version>1.1.0</test-jsf.version>
+        <version.hibernate-validator>4.2.0.Final</version.hibernate-validator>
+        <version.slf4j>1.6.1</version.slf4j>
     </properties>
 
     <dependencyManagement>
-        <dependencies>            
+        <dependencies>
+            <!-- Validation -->
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-validator</artifactId>
+                <version>${version.hibernate-validator}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-jdk14</artifactId>
+                <version>${version.slf4j}</version>
+            </dependency>
+            
             <!-- Archetypes dependency -->
             <dependency>
                 <groupId>org.apache.maven.archetype</groupId>
@@ -114,8 +138,8 @@
                 <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <configuration>
-                        <source>1.5</source>
-                        <target>1.5</target>
+                        <source>${maven.compiler.source}</source>
+                        <target>${maven.compiler.target}</target>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -311,6 +335,19 @@
                                         <versionRange>[1.0.7,)</versionRange>
                                         <goals>
                                             <goal>generate-test-mock</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[2.1,)</versionRange>
+                                        <goals>
+                                            <goal>unpack-dependencies</goal>
                                         </goals>
                                     </pluginExecutionFilter>
                                     <action>

@@ -2,7 +2,7 @@
 
                       RichFaces - Ajax enabled JSF 2.0 component library
 
-                                                   RichFaces 4.0.0.Final
+                                                 RichFaces 4.1.0-SNAPHOT
                                                     http://richfaces.org
                                                               March 2011
                      This software is distributed under the terms of the 
@@ -149,7 +149,7 @@ FUTURE RELEASES
 
 For information on future releases and new features that are planned for next
 version please visit project's wiki at:
-http://www.jboss.org/community/wiki/RichFaces40Planning
+http://community.jboss.org/wiki/RichFaces410ReleaseCenter
 
 
 GET INVOLVED
@@ -162,10 +162,10 @@ this sites
     - RichFaces source code:
       http://www.jboss.org/richfaces/sourcecode
 
-    - How to build RichFaces 4.0: 
+    - How to build RichFaces 4.X:
       http://community.jboss.org/docs/DOC-15747?uniqueTitle=false
     
-    - RichFaces 4.0 Directory structure:
+    - RichFaces 4.X Directory structure:
       http://community.jboss.org/wiki/RichFaces40BuildDirectoryStructure
 
     - RichFaces developer forums
@@ -243,6 +243,7 @@ rich:panelMenuItem
 rich:progressBar
 rich:tooltip
 rich:message
+rich:notify
 
 ---------------------------------
 Menus:
@@ -262,12 +263,19 @@ Input:
 ---------------------------------
 rich:autocomplete
 rich:inplaceInput
-rich:inplaceSelect
 rich:inputNumberSlider
 rich:inputNumberSpinner
-rich:select
 rich:calendar
 rich:fileUpload
+rich:editor
+
+---------------------------------
+Select:
+---------------------------------
+rich:select
+rich:inplaceSelect
+rich:orderingList
+richPickList
 
 ---------------------------------
 Trees:
@@ -291,76 +299,3 @@ Validation:
 ---------------------------------
 rich:validator
 rich:graphValidator
-
-
-New in Version 4.0.Final
-----------------------
-
-    - Minor, low risk stabilizations, and clean up tasks for the Final build to minimize risk.
-    - Thorough review of all the component attributes done and corrections were made based on complexity. 
-    - Bug fixing for CSV and Object Validation features. 
-    - Refactored Listeners classes, methods and Event names according to standard JSF convention.
-      https://issues.jboss.org/browse/RF-10712
-    - Review and update predefined rf-* CSS classes for components to satisfy naming convention 
-      https://issues.jboss.org/browse/RF-9290
-    - TreeNode and TreeDataModel model support for rich:tree added.
-      https://issues.jboss.org/browse/RF-9718
-    - jQuery updated to 1.5.1. https://issues.jboss.org/browse/RF-10686
-    - Several taglib issues found during QE and made corresponding corrections for better IDE support 
-      https://issues.jboss.org/browse/RF-9936
-    - RichFaces showcase design corrections 
-    - Reviewed current state of RichFaces showcase in different JSF environments support and 
-      finalized pom.xml profiles for: 
-          richfaces-showcase (Mojara 2.0.3 - GAE build, Mojara 2.0.4 default build) 
-          richfaces-archetype-simpleapp (Mojara 2.0.4 default build)
-          rf-gae-sample archetype (MyFaces 2.0.4 both GAE and default builds)
-    - Completed Push component demo - irc-sample, with blog and documents before release
-
-
-New in Version 4.0.CR1
-----------------------
-
-    - Completed nearly all taglib's corrections for better IDE support 
-      https://issues.jboss.org/browse/RF-9936
-    - Stabilized the CSV feature with messages, localization and customization 
-      improvements https://issues.jboss.org/browse/RF-10556
-      https://issues.jboss.org/browse/RF-10434 https://issues.jboss.org/browse/RF-10611
-    - Stabilized messages components https://issues.jboss.org/browse/RF-10293 
-      https://issues.jboss.org/browse/RF-10370
-    - A lots of stabilization issues resolved for Switchable Panels and 
-      Panel Menu
-    - Important push problems solved https://issues.jboss.org/browse/RF-10457 
-      https://issues.jboss.org/browse/RF-10473 https://issues.jboss.org/browse/RF-10487 
-      and more customization options added https://issues.jboss.org/browse/RF-10454
-    - A lot of stabilization issues for MyFaces support got resolved
-    - Environment updates: JQuery 1.5, MyFaces 2.0.4, Mojara 2.0.4, Atmosphere 0.6.4
-    - RichFaces showcase has been updated with new design (https://issues.jboss.org/browse/RF-9636) 
-      and now runs stable with MyFaces!
-
-
-New in Version 4.0.M6
----------------------
-
-    - Client Side Validation feature is ready!! All the standard JSF
-      and most of the JSR-303 validators are available on the client by using 
-      just <rich:validator> behavior! We will post detailed blog with examples 
-      in a few days.
-    - ObjectValidation feature also was finalized and allows you to validate 
-      complete objects and dependent fields by just using JSR-303 validators 
-      and the <rich:graphValidator> component. This will also be covered in an
-      up coming blog.
-    - The Ajax framework is improved and now provides ignoreDupResponce core 
-      feature! Together with queue it adds great optimization to your Ajax'ififed
-      pages.
-    - All the richfaces components client side API are reviewed and stabilized. 
-      API Tables will be documented soon in the component reference.
-    - Further review and corrections in components for improving IDE's support.
-    - RichFaces showcase demo application is updated with new showcases for 
-      validation components and new examples for previously released components.
-    - Further improvements in Component Development Kit.
-    - Stabilization works for migrated code. Automation tests with quint, junit. 
-      Review of attributes and facets for consistency and stability are done 
-      and most issues get fixed.
-      
-
-###
