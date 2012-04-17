@@ -18,7 +18,7 @@
     <groupId>org.richfaces</groupId>
     <artifactId>richfaces-bom</artifactId>
     <packaging>pom</packaging>
-    <version>4.2.0.Final</version>
+    <version>4.2.1.Final</version>
     <name>RichFaces BOM</name>
 
     <description>
@@ -48,7 +48,7 @@
     </issueManagement>
 
     <properties>
-        <version.richfaces>4.2.0.Final</version.richfaces>
+        <version.richfaces>4.2.1.Final</version.richfaces>
         <version.javax.faces-api>2.1</version.javax.faces-api>
         <version.com.sun.faces.jsf-api>2.1.0</version.com.sun.faces.jsf-api>
         <version.org.glassfish.javax.faces>2.1.5</version.org.glassfish.javax.faces>
@@ -59,7 +59,7 @@
         <version.el-api>1.0</version.el-api>
         <version.servlet-api>3.0.1</version.servlet-api>
         <version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>1.0.0.Final</version.org.jboss.spec.javax.servlet.jboss-servlet-api_3.0_spec>
-        <version.jsf-api>2.1</version.jsf-api>
+        <version.jsp-api>2.1</version.jsp-api>
         <version.jstl-api>1.2</version.jstl-api>
         <version.google-guava>10.0.1</version.google-guava>
         <version.validation-api>1.0.0.GA</version.validation-api>
@@ -68,7 +68,9 @@
         <version.jbosscache>3.2.5.GA</version.jbosscache>
         <version.ehcache>1.6.0</version.ehcache>
         <version.atmosphere>0.8.4</version.atmosphere>
-        <version.jms-api>1.1</version.jms-api>
+        <version.jms-api>1.1-rev-1</version.jms-api>
+        <version.jms-deprecated>1.1</version.jms-deprecated>
+        <version.rewrite>1.0.4.Final</version.rewrite>
         
         <!-- Release repositories -->
         <jboss.releases.repo.url>https://repository.jboss.org/nexus/service/local/staging/deploy/maven2/</jboss.releases.repo.url>
@@ -242,7 +244,7 @@
             <dependency>
                 <groupId>javax.servlet.jsp</groupId>
                 <artifactId>jsp-api</artifactId>
-                <version>${version.jsf-api}</version>
+                <version>${version.jsp-api}</version>
             </dependency>
             <dependency>
                 <groupId>javax.servlet.jsp.jstl</groupId>
@@ -259,6 +261,17 @@
                 <artifactId>validation-api</artifactId>
                 <version>${version.validation-api}</version>
             </dependency>
+            <dependency>
+                <groupId>org.ocpsoft.rewrite</groupId>
+                <artifactId>rewrite-servlet</artifactId>
+                <version>${version.rewrite}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ocpsoft.rewrite</groupId>
+                <artifactId>rewrite-integration-cdi</artifactId>
+                <version>${version.rewrite}</version>
+            </dependency>
+
             <!-- Required for EL-CSS func -->
             <dependency>
                 <groupId>net.sourceforge.cssparser</groupId>
@@ -291,8 +304,14 @@
             </dependency>
             <dependency>
                 <groupId>javax.jms</groupId>
-                <artifactId>jms</artifactId>
+                <artifactId>jms-api</artifactId>
                 <version>${version.jms-api}</version>
+            </dependency>
+            <!-- Deprecated in 4.2.1.Final (RF-12119), use jms-api instead -->
+            <dependency>
+                <groupId>javax.jms</groupId>
+                <artifactId>jms</artifactId>
+                <version>${version.jms-deprecated}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
