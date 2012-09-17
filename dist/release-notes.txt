@@ -1,3 +1,23 @@
+New in Version 4.2.3.CR1
+--------------------------
+    Bug
+    [RF-10758] - Input fields in popupPanel lose focus
+    [RF-10980] - Impossible to set tabindex of input inside rich:popupPanel
+    [RF-11051] - a4j.version does not work
+    [RF-11104] - rich:inputNumberSlider slider position is affected by css position attribute of containing element
+    [RF-12113] - rich:inputNumberSpinner minValue and maxValue being ignored after second request
+    [RF-12114] - Richfaces 4.2 rich:autocomplete don't fire ajax on blur event
+    [RF-12221] - rich:orderingList: fix VDL-DOC of @listHeight, @maxListHeight, @minListHeight, @listWidth
+    [RF-12256] - DragAndDrop + position: absolute results in broken positioning
+    [RF-12273] - rich:fileUpload does not work in portlets because it does not utilize javax.faces.encodedURL for the XmlHttpRequest URL
+    [RF-12424] - Showcase contains Servlet specific code
+    [RF-12425] - Showcase fails to load SyntaxHighlighter scripts when Require.js is present
+    [RF-12476] - Resource Name in mapping for two menu images is incorrect
+
+    Enhancement
+    [RF-12343] - Problem when saving form with rich picklist inside composite component
+
+
 New in Version 4.2.2.Final
 --------------------------
 
