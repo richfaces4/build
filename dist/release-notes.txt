@@ -1,5 +1,18 @@
+New in Version 4.3.0.CR2
+------------------------
+
+  Bug
+  [RF-12736] - rich:notifyMessages output is not escaped
+  [RF-12737] - Showcase: focus preserve demo does not show benefits of the component
+  [RF-12724] - rich:inplaceInput: correct style class names according to Component Reference
+  [RF-12702] - Kitchensink Archetype: info icon isn't rendered correctly on iPhone
+
+  Enhancement
+  [RF-12739] - rich:jQuery function - rewrite to use document.getElementBy to support colons as JSF separator chars
+  [RF-12741] - Change the Showcase to demonstrate the relationship between the rich:jQuery component the and EL function
+
 New in Version 4.3.0.CR1
------------------------
+------------------------
 
 	Bug
 	[RF-11067] - rich:autocomplete popups with suggestions does not reflect the value in input
