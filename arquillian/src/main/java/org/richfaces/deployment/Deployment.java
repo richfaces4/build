@@ -198,13 +198,8 @@ public class Deployment {
 
         for (JavaArchive archive : dependencies) {
             dir.mkdirs();
-            File outputFile = new File(dir, archive.getName());
-            InputStream zipStream = archive.as(ZipExporter.class).exportAsInputStream();
-            try {
-                IOUtils.copy(zipStream, new FileOutputStream(outputFile));
-            } catch (IOException e) {
-                throw new IllegalStateException(e);
-            }
+            final File outputFile = new File(dir, archive.getName());
+            archive.as(ZipExporter.class).exportTo(outputFile);
         }
     }
 }
