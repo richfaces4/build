@@ -22,10 +22,7 @@
 package org.richfaces.deployment;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.logging.Logger;
@@ -33,7 +30,6 @@ import java.util.logging.Logger;
 import javax.annotation.Nullable;
 import javax.faces.webapp.FacesServlet;
 
-import org.apache.commons.io.IOUtils;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
@@ -118,7 +114,6 @@ public class Deployment {
                     .urlPattern("/faces/*")
                 .up();
 
-        // TODO versions have to be loaded from POM
         addMavenDependency("com.google.guava:guava", "net.sourceforge.cssparser:cssparser");
 
         // Servlet container setup
@@ -285,13 +280,8 @@ public class Deployment {
             if (mavenDependencyExcluded(archive.getName())) {
                 continue;
             }
-            File outputFile = new File(dir, archive.getName());
-            InputStream zipStream = archive.as(ZipExporter.class).exportAsInputStream();
-            try {
-                IOUtils.copy(zipStream, new FileOutputStream(outputFile));
-            } catch (IOException e) {
-                throw new IllegalStateException(e);
-            }
+            final File outputFile = new File(dir, archive.getName());
+            archive.as(ZipExporter.class).exportTo(outputFile, true);
         }
     }
 
