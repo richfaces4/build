@@ -22,16 +22,12 @@
 package org.richfaces.deployment;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FilenameFilter;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Set;
 
 import javax.faces.webapp.FacesServlet;
 
-import org.apache.commons.io.IOUtils;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
@@ -73,7 +69,6 @@ public class Deployment {
      * @param testClass
      */
     protected Deployment(Class<?> testClass) {
-
         if (testClass != null) {
             this.archive = ShrinkWrap.create(WebArchive.class, testClass.getSimpleName() + ".war");
         } else {
@@ -154,10 +149,9 @@ public class Deployment {
     }
 
     /**
-     * Resolves maven dependencies, either by {@link MavenDependencyResolver} or from file cache
+     * Resolves maven dependencies, either by {@link org.jboss.shrinkwrap.resolver.api.maven.Maven} or from file cache
      */
     private void exportMavenDependenciesToArchive(WebArchive finalArchive) {
-
         Set<File> jarFiles = Sets.newHashSet();
 
         for (String dependency : mavenDependencies) {
@@ -191,7 +185,6 @@ public class Deployment {
      * Resolves Maven dependency and writes it to the cache, so it can be reused next run
      */
     private void resolveMavenDependency(String missingDependency, File dir) {
-
         final JavaArchive[] dependencies = Maven.resolver().loadPomFromFile("pom.xml").resolve(missingDependency)
             .withTransitivity().as(JavaArchive.class);
 
