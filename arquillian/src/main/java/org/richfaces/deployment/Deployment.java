@@ -27,7 +27,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Set;
 
 import javax.faces.webapp.FacesServlet;
@@ -42,8 +41,7 @@ import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.facesconfig20.FacesConfigVersionType;
 import org.jboss.shrinkwrap.descriptor.api.facesconfig20.WebFacesConfigDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
-import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
-import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Sets;
@@ -193,8 +191,9 @@ public class Deployment {
      * Resolves Maven dependency and writes it to the cache, so it can be reused next run
      */
     private void resolveMavenDependency(String missingDependency, File dir) {
-        Collection<JavaArchive> dependencies = DependencyResolvers.use(MavenDependencyResolver.class)
-                .loadEffectivePom("pom.xml").artifact(missingDependency).resolveAs(JavaArchive.class);
+
+        final JavaArchive[] dependencies = Maven.resolver().loadPomFromFile("pom.xml").resolve(missingDependency)
+            .withTransitivity().as(JavaArchive.class);
 
         for (JavaArchive archive : dependencies) {
             dir.mkdirs();
