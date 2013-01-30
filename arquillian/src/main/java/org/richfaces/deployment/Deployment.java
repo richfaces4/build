@@ -191,7 +191,7 @@ public class Deployment {
         for (JavaArchive archive : dependencies) {
             dir.mkdirs();
             final File outputFile = new File(dir, archive.getName());
-            archive.as(ZipExporter.class).exportTo(outputFile);
+            archive.as(ZipExporter.class).exportTo(outputFile, true);
         }
     }
 }
