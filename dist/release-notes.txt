@@ -1,3 +1,12 @@
+New in Version 4.3.0.Final
+--------------------------
+  Bug
+  [RF-12728] - rich:fileUpload doesn't accept valid file after its unsuccessful multiple upload
+
+  Enhancement
+  [RF-12710] - rich:calendar - currentDate attribute has confusing name and documentation
+  [RF-12751] - Showcase - notify demos - set escape attribute to false
+
 New in Version 4.3.0.CR2
 ------------------------
 
