@@ -2,7 +2,7 @@
 
                       RichFaces - Ajax enabled JSF 2.0 component library
 
-                                                 RichFaces 4.2.2.Final
+                                                 RichFaces 4.3.0.Final
                                                     http://richfaces.org
                                                               March 2011
                      This software is distributed under the terms of the 
@@ -148,8 +148,8 @@ FUTURE RELEASES
 ---------------
 
 For information on future releases and new features that are planned for next
-version please visit project's wiki at:
-http://community.jboss.org/wiki/RichFaces410ReleaseCenter
+version please visit project's roadmap at:
+https://issues.jboss.org/browse/RF#selectedTab=com.atlassian.jira.plugin.system.project%3Aroadmap-panel
 
 
 GET INVOLVED
@@ -163,7 +163,7 @@ this sites
       http://www.jboss.org/richfaces/sourcecode
 
     - How to build RichFaces 4.X:
-      http://community.jboss.org/docs/DOC-15747?uniqueTitle=false
+      https://community.jboss.org/wiki/HowToBuildRichFaces4x
     
     - RichFaces 4.X Directory structure:
       http://community.jboss.org/wiki/RichFaces40BuildDirectoryStructure
@@ -223,6 +223,9 @@ rich:findComponent
 rich:componentControl
 rich:hashParam
 rich:hotKey
+rich:placeholder
+rich:focus
+rich:focusManager
 
 ---------------------------------
 Output:

@@ -4,13 +4,13 @@
     <parent>
         <groupId>org.richfaces</groupId>
         <artifactId>richfaces-parent</artifactId>
-        <version>12</version>
+        <version>13</version>
         <relativePath>../parent/pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>richfaces-root-aggregator</artifactId>
-    <version>4.2.2.Final</version>
+    <version>4.3.0.Final</version>
     <packaging>pom</packaging>
     <name>RichFaces Aggregator</name>
 
@@ -27,6 +27,7 @@
     <modules>
         <module>bom</module>
         <module>parent</module>
+        <module>arquillian</module>
     </modules>
 
     <profiles>
