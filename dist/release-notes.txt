@@ -1,3 +1,22 @@
+New in Version 4.3.1.Final
+--------------------------
+  Bug
+  [RF-12523] - a4j:commandButton generates duplicated context path using a resource value expression within image attribute
+  [RF-12689] - Upgrade Atmosphere from 1.0.1 to 1.0.10
+  [RF-12769] - Select Component with Manual Input uses first option regardless of what is picked
+  [RF-12781] - The kitchensink-rf quickstart uses obsolete property names and values
+  [RF-12788] - org.richfaces.javascript.QUnitTest fails in WFK 2.2
+  [RF-12791] - Update the quickstart pom files to match changes made in the jboss-jdf repository
+  [RF-12804] - ExtendedDatatable: columnClasses attribute not work
+
+  Enhancement
+  [RF-12750] - extendedDataTable make facet header clickable using default sortHandle
+  [RF-12784] - Showcase readme - update deployment from eclipse part
+  [RF-12803] - ExtendedPartialViewContext: Add JavaScriptScript service extensions to response by jsf.ajax.request triggered requests
+
+  Feature Request
+  [RF-12774] - a4j:commandLink does not set the styleClass when disabled
+
 New in Version 4.3.0.Final
 --------------------------
   Bug
