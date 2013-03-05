@@ -9,6 +9,7 @@ New in Version 4.3.1.Final
   [RF-12788] - org.richfaces.javascript.QUnitTest fails in WFK 2.2
   [RF-12791] - Update the quickstart pom files to match changes made in the jboss-jdf repository
   [RF-12804] - ExtendedDatatable: columnClasses attribute not work
+  [RF-12821] - ajaxbegin, ajaxbeforedomupdate and ajaxcomplete doesn't work
 
   Component Upgrade
   [RF-12689] - Upgrade Atmosphere from 1.0.1 to 1.0.10
