@@ -6,23 +6,22 @@ import org.jboss.arquillian.core.api.annotation.Inject;
 import org.jboss.arquillian.core.api.annotation.Observes;
 import org.jboss.arquillian.drone.api.annotation.Default;
 import org.jboss.arquillian.test.spi.annotation.SuiteScoped;
-import org.jboss.arquillian.test.spi.event.suite.AfterSuite;
 import org.jboss.arquillian.test.spi.event.suite.BeforeSuite;
 
-public class FundamentalTestConfigurator {
+public class FundamentalTestConfiguratorObserver {
 
     @Inject
     @SuiteScoped
     private InstanceProducer<FundamentalTestConfiguration> configuration;
 
-    public void configureGraphene(@Observes BeforeSuite event, ArquillianDescriptor descriptor) {
+    public void configure(@Observes ArquillianDescriptor descriptor) {
         FundamentalTestConfiguration c = new FundamentalTestConfiguration();
         c.configure(descriptor, Default.class).validate();
-        this.configuration.set(c);
         FundamentalTestConfigurationContext.set(c);
     }
 
-    public void unconfigureGraphene(@Observes AfterSuite event) {
-        FundamentalTestConfigurationContext.reset();
+    public void setupConfigurationContext(@Observes(precedence = 500) BeforeSuite event) {
+        FundamentalTestConfiguration c = FundamentalTestConfigurationContext.get();
+        this.configuration.set(c);
     }
 }

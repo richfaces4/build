@@ -925,6 +925,12 @@
             <properties>
                 <integration.test.source>src/test/integration</integration.test.source>
                 <arquillian.debug>false</arquillian.debug>
+                
+                <!-- For managed test setup those specifically -->
+                <arquillian.container.home></arquillian.container.home>
+                <arquillian.container.distribution></arquillian.container.distribution>
+                <arquillian.container.configuration></arquillian.container.configuration>
+                <arquillian.container.uninstall>true</arquillian.container.uninstall>
             </properties>
             <dependencies>
                 <dependency>
@@ -1010,7 +1016,8 @@
             </activation>
             <properties>
                 <arquillian.launch.jbossas71>true</arquillian.launch.jbossas71>
-                <jbossHome>${project.build.directory}/jboss-as-${version.jboss-as7}</jbossHome>
+                <arquillian.container.home>${project.build.directory}/jboss-as-${version.jboss-as7}</arquillian.container.home>
+                <arquillian.container.distribution>org.jboss.as:jboss-as-dist:zip:${version.jboss-as7}</arquillian.container.distribution>
             </properties>
             <dependencies>
                 <dependency>
@@ -1019,35 +1026,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.jboss.as</groupId>
-                                            <artifactId>jboss-as-dist</artifactId>
-                                            <version>${version.jboss-as7}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>jbossas-remote-7-1</id>
@@ -1060,7 +1038,29 @@
             </dependencies>
         </profile>
         <profile>
-            <id>tomee-1-5</id>
+            <id>tomee-managed-1-5</id>
+            <activation>
+                <property>
+                    <name>integration</name>
+                    <value>tomee15</value>
+                </property>
+            </activation>
+            <properties>
+                <arquillian.launch.tomee15>true</arquillian.launch.tomee15>
+                <arquillian.container.home>${project.build.directory}/apache-tomee-webprofile-${version.tomee15}</arquillian.container.home>
+                <arquillian.container.distribution>org.apache.openejb:apache-tomee:zip:webprofile:${version.tomee15}</arquillian.container.distribution>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.openejb</groupId>
+                    <artifactId>arquillian-tomee-remote</artifactId>
+                    <version>${version.tomee15}</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+        <profile>
+            <id>tomee-remote-1-5</id>
             <activation>
                 <property>
                     <name>integration</name>
@@ -1078,35 +1078,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.apache.openejb</groupId>
-                                            <artifactId>apache-tomee</artifactId>
-                                            <version>${version.tomee15}</version>
-                                            <classifier>webprofile</classifier>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>glassfish-managed-3-1</id>
@@ -1118,7 +1089,8 @@
             </activation>
             <properties>
                 <arquillian.launch.glassfish31>true</arquillian.launch.glassfish31>
-                <glassFishHome>${project.build.directory}/glassfish3</glassFishHome>
+                <arquillian.container.home>${project.build.directory}/glassfish3</arquillian.container.home>
+                <arquillian.container.distribution>org.glassfish.main.distributions:glassfish:zip:${version.glassfish31}</arquillian.container.distribution>
             </properties>
             <dependencies>
                 <dependency>
@@ -1128,33 +1100,6 @@
                     <scope>test</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.glassfish.main.distributions</groupId>
-                                            <artifactId>glassfish</artifactId>
-                                            <version>${version.glassfish31}</version>
-                                            <type>zip</type>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>glassfish-remote-3-1</id>
@@ -1194,9 +1139,11 @@
                 </property>
             </activation>
             <properties>
-                <catalinaHome>${project.build.directory}/apache-tomcat-${version.tomcat6}</catalinaHome>
                 <arquillian.launch.tomcat6>true</arquillian.launch.tomcat6>
                 <arquillian.richfaces.servletContainerSetup>true</arquillian.richfaces.servletContainerSetup>
+                <arquillian.container.home>${project.build.directory}/apache-tomcat-${version.tomcat6}</arquillian.container.home>
+                <arquillian.container.distribution>com.googlecode.t7mp:tomcat:zip:${version.tomcat6}</arquillian.container.distribution>
+                <arquillian.container.configuration>org.richfaces.test:richfaces-arquillian:zip:configuration-tomcat6:${project.version}</arquillian.container.configuration>
             </properties>
             <dependencies>
                 <dependency>
@@ -1205,62 +1152,7 @@
                     <version>${version.arquillian.tomcat}</version>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>com.googlecode.t7mp</groupId>
-                    <artifactId>tomcat</artifactId>
-                    <version>${version.tomcat6}</version>
-                    <type>zip</type>
-                </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.googlecode.t7mp</groupId>
-                                            <artifactId>tomcat</artifactId>
-                                            <version>${version.tomcat6}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>unpack-configuration</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.richfaces.test</groupId>
-                                            <artifactId>richfaces-arquillian</artifactId>
-                                            <type>zip</type>
-                                            <classifier>configuration-tomcat6</classifier>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${catalinaHome}</outputDirectory>
-                                            <includes>**/*.*</includes>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         <profile>
             <id>tomcat-managed-7</id>
@@ -1274,6 +1166,9 @@
                 <catalinaHome>${project.build.directory}/apache-tomcat-${version.tomcat7}</catalinaHome>
                 <arquillian.launch.tomcat7>true</arquillian.launch.tomcat7>
                 <arquillian.richfaces.servletContainerSetup>true</arquillian.richfaces.servletContainerSetup>
+                <arquillian.container.home>${project.build.directory}/apache-tomcat-${version.tomcat7}</arquillian.container.home>
+                <arquillian.container.distribution>com.googlecode.t7mp:tomcat:zip:${version.tomcat7}</arquillian.container.distribution>
+                <arquillian.container.configuration>org.richfaces.test:richfaces-arquillian:zip:configuration-tomcat7:${project.version}</arquillian.container.configuration>
             </properties>
             <dependencies>
                 <dependency>
@@ -1282,62 +1177,7 @@
                     <version>${version.arquillian.tomcat}</version>
                     <scope>test</scope>
                 </dependency>
-                <dependency>
-                    <groupId>com.googlecode.t7mp</groupId>
-                    <artifactId>tomcat</artifactId>
-                    <version>${version.tomcat7}</version>
-                    <type>zip</type>
-                </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>unpack</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>com.googlecode.t7mp</groupId>
-                                            <artifactId>tomcat</artifactId>
-                                            <version>${version.tomcat7}</version>
-                                            <type>zip</type>
-                                            <overWrite>false</overWrite>
-                                            <outputDirectory>${project.build.directory}</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                            <execution>
-                                <id>unpack-configuration</id>
-                                <phase>process-test-classes</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
-                                            <groupId>org.richfaces.test</groupId>
-                                            <artifactId>richfaces-arquillian</artifactId>
-                                            <type>zip</type>
-                                            <classifier>configuration-tomcat7</classifier>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${catalinaHome}</outputDirectory>
-                                            <includes>**/*.*</includes>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
         </profile>
         
         <!-- Browsers -->
