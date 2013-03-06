@@ -1,0 +1,16 @@
+<assembly>
+    <id>configuration-tomcat6</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <fileSets>
+        <fileSet>
+            <directory>${basedir}/src/configuration/tomcat6</directory>
+            <outputDirectory>/</outputDirectory>
+            <includes>
+                <include>**/*.*</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+</assembly>

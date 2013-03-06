@@ -22,12 +22,18 @@
 package org.richfaces.deployment;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FilenameFilter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import javax.annotation.Nullable;
 import javax.faces.webapp.FacesServlet;
 
+import org.apache.commons.io.IOUtils;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.exporter.ZipExporter;
@@ -38,6 +44,8 @@ import org.jboss.shrinkwrap.descriptor.api.facesconfig20.FacesConfigVersionType;
 import org.jboss.shrinkwrap.descriptor.api.facesconfig20.WebFacesConfigDescriptor;
 import org.jboss.shrinkwrap.descriptor.api.webapp30.WebAppDescriptor;
 import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.richfaces.arquillian.configuration.FundamentalTestConfiguration;
+import org.richfaces.arquillian.configuration.FundamentalTestConfigurationContext;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Sets;
@@ -49,12 +57,17 @@ import com.google.common.collect.Sets;
  */
 public class Deployment {
 
+    private final Logger log = Logger.getLogger(Deployment.class.getName());
+    private final FundamentalTestConfiguration configuration = FundamentalTestConfigurationContext.getProxy();
+    private final File cacheDir = new File("target/shrinkwrap-resolver-cache/");
+
     private WebArchive archive;
 
     private WebFacesConfigDescriptor facesConfig;
     private WebAppDescriptor webXml;
 
     private Set<String> mavenDependencies = Sets.newHashSet();
+    private Set<String> excludedMavenDependencies = Sets.newHashSet();
 
     /**
      * Constructs base deployment with:
@@ -106,7 +119,17 @@ public class Deployment {
                 .up();
 
         // TODO versions have to be loaded from POM
-        addMavenDependency("com.google.guava:guava", "net.sourceforge.cssparser:cssparser:0.9.5", "org.w3c.css:sac:1.3");
+        addMavenDependency("com.google.guava:guava", "net.sourceforge.cssparser:cssparser");
+
+        // Servlet container setup
+        if (configuration.servletContainerSetup()) {
+            log.info("Adding Servlet Container extensions for JSF");
+            withServletContainerSetup();
+        }
+
+        if (!configuration.isCurrentRichFacesVersion()) {
+            log.info("Running test against RichFaces version: " + configuration.getRichFacesVersion());
+        }
     }
 
     /**
@@ -123,6 +146,8 @@ public class Deployment {
         WebArchive finalArchive = archive
                 .addAsWebInfResource(new StringAsset(facesConfig.exportAsString()), "faces-config.xml")
                 .addAsWebInfResource(new StringAsset(webXml.exportAsString()), "web.xml");
+
+
 
         // add library dependencies
         exportMavenDependenciesToArchive(finalArchive);
@@ -149,28 +174,53 @@ public class Deployment {
     }
 
     /**
-     * Resolves maven dependencies, either by {@link org.jboss.shrinkwrap.resolver.api.maven.Maven} or from file cache
+     * Resolves maven dependencies, either by {@link MavenDependencyResolver} or from file cache
      */
     private void exportMavenDependenciesToArchive(WebArchive finalArchive) {
+
         Set<File> jarFiles = Sets.newHashSet();
 
         for (String dependency : mavenDependencies) {
-            File cacheDir = new File("target/shrinkwrap-resolver-cache/" + dependency);
-            if (!cacheDir.exists()) {
-                resolveMavenDependency(dependency, cacheDir);
-            }
-            File[] listFiles = cacheDir.listFiles(new FilenameFilter() {
+            try {
+                File dependencyDir = new File(cacheDir, dependency);
 
-                @Override
-                public boolean accept(File dir, String name) {
-                    return name.endsWith(".jar");
+                if (!dependencyDir.exists()) {
+                    resolveMavenDependency(dependency, dependencyDir);
+                } else if (dependencyDirIsStale(dependencyDir)) {
+                    cleanDependencyDir(dependencyDir);
+                    resolveMavenDependency(dependency, dependencyDir);
                 }
-            });
-            jarFiles.addAll(Arrays.asList(listFiles));
+
+                File[] listFiles = dependencyDir.listFiles(new FilenameFilter() {
+
+                    @Override
+                    public boolean accept(File dir, String name) {
+                        return name.endsWith(".jar");
+                    }
+                });
+
+                jarFiles.addAll(Arrays.asList(listFiles));
+            } catch (Exception e) {
+                throw new IllegalStateException("Can't resolve maven dependency: " + dependency);
+            }
         }
 
         File[] files = jarFiles.toArray(new File[jarFiles.size()]);
         finalArchive.addAsLibraries(files);
+    }
+
+    private boolean dependencyDirIsStale(File dir) {
+        long lastModified = dir.lastModified();
+        long expires = lastModified + 720000;
+
+        return System.currentTimeMillis() > expires;
+    }
+
+    private void cleanDependencyDir(File dir) {
+        for (File file : dir.listFiles()) {
+            file.delete();
+        }
+        dir.delete();
     }
 
     /**
@@ -182,16 +232,75 @@ public class Deployment {
     }
 
     /**
+     * Adds patters for Maven library dependency exclusion
+     */
+    public Deployment excludeMavenDependency(String... dependencies) {
+        excludedMavenDependencies.addAll(Arrays.asList(dependencies));
+        return this;
+    }
+
+    /**
+     * Adds dependencies which are necessary to deploy onto Servlet containers (Tomcat, Jetty)
+     */
+    private Deployment withServletContainerSetup() {
+        addMavenDependency(configuration.getJsfImplementation());
+
+        addMavenDependency("org.jboss.weld.servlet:weld-servlet");
+        excludeMavenDependency("slf4j-api");
+
+        addMavenDependency("org.jboss.el:jboss-el");
+        excludeMavenDependency("el-api");
+
+        addMavenDependency("javax.annotation:jsr250-api:1.0");
+        addMavenDependency("javax.servlet:jstl:1.2");
+
+
+
+        webXml(new Function<WebAppDescriptor, WebAppDescriptor>() {
+            @Override
+            public WebAppDescriptor apply(@Nullable WebAppDescriptor input) {
+
+                input
+                    .createListener()
+                        .listenerClass("org.jboss.weld.environment.servlet.Listener")
+                        .up();
+
+                return input;
+            }
+        });
+
+        return this;
+    }
+
+    /**
      * Resolves Maven dependency and writes it to the cache, so it can be reused next run
      */
     private void resolveMavenDependency(String missingDependency, File dir) {
-        final JavaArchive[] dependencies = Maven.resolver().loadPomFromFile("pom.xml").resolve(missingDependency)
-            .withTransitivity().as(JavaArchive.class);
+
+        JavaArchive[] dependencies = Maven.resolver()
+                .loadPomFromFile("pom.xml").resolve(missingDependency).withTransitivity().as(JavaArchive.class);
 
         for (JavaArchive archive : dependencies) {
             dir.mkdirs();
-            final File outputFile = new File(dir, archive.getName());
-            archive.as(ZipExporter.class).exportTo(outputFile, true);
+            if (mavenDependencyExcluded(archive.getName())) {
+                continue;
+            }
+            File outputFile = new File(dir, archive.getName());
+            InputStream zipStream = archive.as(ZipExporter.class).exportAsInputStream();
+            try {
+                IOUtils.copy(zipStream, new FileOutputStream(outputFile));
+            } catch (IOException e) {
+                throw new IllegalStateException(e);
+            }
         }
+    }
+
+    private boolean mavenDependencyExcluded(String archiveName) {
+        for (String exclude : excludedMavenDependencies) {
+            if (archiveName.contains(exclude)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
