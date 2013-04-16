@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MODULES="archetypes build cdk components core dev-examples showcase"
+MODULES="archetypes build components core dev-examples showcase"
 
 usage()
 {

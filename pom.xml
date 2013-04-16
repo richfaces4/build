@@ -44,7 +44,6 @@
             <id>build</id>
             <modules>
                 <module>../core</module>
-                <module>../cdk</module>
                 <module>../components</module>
                 <module>../archetypes</module>
                 <module>../dev-examples</module>
