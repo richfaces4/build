@@ -35,6 +35,7 @@
 
     <properties>
         <version.richfaces>4.3.2-SNAPSHOT</version.richfaces>
+        <version.cdk>4.3.1.Final</version.cdk>
         <version.test-jsf>1.1.6</version.test-jsf>
         <version.vdl-doc>3</version.vdl-doc>
         <version.shade-transformers>8</version.shade-transformers>
@@ -236,13 +237,13 @@
             <dependency>
                 <groupId>org.richfaces.cdk</groupId>
                 <artifactId>commons</artifactId>
-                <version>${version.richfaces}</version>
+                <version>${version.cdk}</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces.cdk</groupId>
                 <artifactId>commons</artifactId>
                 <classifier>tests</classifier>
-                <version>${version.richfaces}</version>
+                <version>${version.cdk}</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces.core</groupId>
@@ -253,22 +254,22 @@
             <dependency>
                 <groupId>org.richfaces.cdk</groupId>
                 <artifactId>annotations</artifactId>
-                <version>${version.richfaces}</version>
+                <version>${version.cdk}</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces.cdk</groupId>
                 <artifactId>attributes</artifactId>
-                <version>${version.richfaces}</version>
+                <version>${version.cdk}</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces.cdk</groupId>
                 <artifactId>xinclude</artifactId>
-                <version>${version.richfaces}</version>
+                <version>${version.cdk}</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces.cdk</groupId>
                 <artifactId>generator</artifactId>
-                <version>${version.richfaces}</version>
+                <version>${version.cdk}</version>
             </dependency>
             <dependency>
                 <groupId>org.richfaces.test</groupId>
@@ -664,12 +665,12 @@
                 <plugin>
                     <groupId>org.richfaces.cdk</groupId>
                     <artifactId>maven-cdk-plugin</artifactId>
-                    <version>${version.richfaces}</version>
+                    <version>${version.cdk}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.richfaces.cdk</groupId>
                     <artifactId>maven-richfaces-resources-plugin</artifactId>
-                    <version>${version.richfaces}</version>
+                    <version>${version.cdk}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.jboss.as.plugins</groupId>
