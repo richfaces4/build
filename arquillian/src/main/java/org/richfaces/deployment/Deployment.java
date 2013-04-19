@@ -113,8 +113,6 @@ public class Deployment {
                     .urlPattern("/faces/*")
                 .up();
 
-        addMavenDependency("com.google.guava:guava", "net.sourceforge.cssparser:cssparser");
-
         // Servlet container setup
         if (configuration.servletContainerSetup()) {
             log.info("Adding Servlet Container extensions for JSF");
@@ -271,8 +269,17 @@ public class Deployment {
      */
     private void resolveMavenDependency(String missingDependency, File dir) {
 
-        JavaArchive[] dependencies = Maven.resolver()
-                .loadPomFromFile("pom.xml").resolve(missingDependency).withTransitivity().as(JavaArchive.class);
+        JavaArchive[] dependencies;
+
+        if (missingDependency.matches("^[^:]+:[^:]+:[^:]+")) {
+            // resolution of the artifact without a version specified
+            dependencies = Maven.resolver().resolve(missingDependency).withClassPathResolution(false).withTransitivity()
+                    .as(JavaArchive.class);
+        } else {
+            // resolution of the artifact without a version specified
+            dependencies = Maven.resolver().loadPomFromFile("pom.xml").resolve(missingDependency)
+                    .withClassPathResolution(false).withTransitivity().as(JavaArchive.class);
+        }
 
         for (JavaArchive archive : dependencies) {
             dir.mkdirs();

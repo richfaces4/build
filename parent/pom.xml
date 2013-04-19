@@ -88,7 +88,7 @@
         <version.arquillian.warp>1.0.0.Alpha2</version.arquillian.warp>
         <version.arquillian.graphene>2.0.0.Alpha3</version.arquillian.graphene>
         <version.selenium>2.31.0</version.selenium>
-        <version.shrinkwrap.resolver>2.0.0-beta-2</version.shrinkwrap.resolver>
+        <version.shrinkwrap.resolver>2.0.0-beta-3</version.shrinkwrap.resolver>
         <version.shrinkwrap.descriptors>2.0.0-alpha-3</version.shrinkwrap.descriptors>
         <version.arquillian.tomcat>1.0.0.CR4</version.arquillian.tomcat>
         <version.arquillian.glassfish31>1.0.0.CR3</version.arquillian.glassfish31>
