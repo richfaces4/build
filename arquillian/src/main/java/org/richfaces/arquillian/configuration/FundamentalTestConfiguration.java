@@ -10,7 +10,7 @@ public class FundamentalTestConfiguration implements DroneConfiguration<Fundamen
 
     private String richfacesVersion;
     private Boolean servletContainerSetup;
-    private String currentBuildRichfacesVersion = "4.3.2.CR1";
+    private String currentBuildRichfacesVersion = "4.3.2-SNAPSHOT";
     private String jsfImplementation;
     private String containerHome;
     private String containerDistribution;
