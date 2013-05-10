@@ -15,9 +15,11 @@ New in Version 4.3.2
     [RF-12858] - rich:calendar dateselect event is fired twice
     [RF-12868] - Update the Summary of the RichFaces kitchensink quickstart
     [RF-12893] - Partial response not ended correctly on exception
-    [RF-12896] - Richfaces TopicsContext.lookup() returns null after redeployment when Richfaces is deployed as a module in JBoss EAP 6
-    [RF-12897] - ExtendedPartialViewContextImpl swallows exceptions
     [RF-12928] - ExtendedDataTable: columnsOrder doesnt work after changing order
+    [RF-12931] - rich:fileupload broken with jsf.js changes in Mojarra 2.1.21
+    [RF-12933] - rich:tooltip replace 'defaultContent' facet in docs and examples with 'loading'
+    [RF-12958] - Popup panel opened from inside popup panel doesn't work
+    [RF-12969] - rich:tabPanel: Click on already selected rich:tab causes JavaScript error
 
     Component Upgrade
     [RF-12688] - Upgrade Guava from 11.02 to 13.0.1
@@ -27,6 +29,7 @@ New in Version 4.3.2
     Enhancement
     [RF-12784] - Showcase readme - update deployment from eclipse part
     [RF-12786] - Showcase - rewrite readme to markdown
+    [RF-12964] - Create appropriate push timeouts for the showcase
 
     Feature Request
     [RF-12810] - Introduce profiles for verification of fundamental tests on Tomcat 6 and 7, TomEE 1.5 and GlassFish 3.1
@@ -34,6 +37,8 @@ New in Version 4.3.2
     [RF-12935] - Fix resolution of framework tests' artifacts with version enforced
     [RF-12937] - Introduce a profile for running framework tests against JBoss EAP
     [RF-12938] - Update Shrinkwrap
+    [RF-12940] - Showcase: fix path to outputPanel - compositeMessages sample source
+    [RF-12941] - Showcase: ProgressBar demo - remove obsolete attribute and make the progress smoother
 
     Task
     [RF-12843] - Apply unix style line-endings to the entire codebase
