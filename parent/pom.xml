@@ -23,7 +23,7 @@
     </parent>
 
     <artifactId>richfaces-root-parent</artifactId>
-    <version>4.3.2.Final</version>
+    <version>4.3.3-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>RichFaces Root Parent</name>
 
@@ -34,7 +34,7 @@
     </description>
 
     <properties>
-        <version.richfaces>4.3.2.Final</version.richfaces>
+        <version.richfaces>4.3.3-SNAPSHOT</version.richfaces>
         <version.cdk>4.3.1.Final</version.cdk>
         <version.test-jsf>1.1.6</version.test-jsf>
         <version.vdl-doc>3</version.vdl-doc>
