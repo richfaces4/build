@@ -1,0 +1,252 @@
+= Release Process
+
+This guide provides a chronological steps which goes through release tagging, staging, verification and publishing.
+
+== Prerequisites
+
+You need to make sure you have access to the JBoss nexus server, with permissions to stage, and release.  The documents above have information on this, but if you are not sure please contact JBoss helpdesk, and follow up with the project lead.
+
+=== Release settings
+
+Before beginning any of the procedures below you need to setup your maven installation.
+
+Use following template for a `release-settings.xml` and pass it to all Maven executions (just change `username`, `password` and `localRepository` settings as convenient):
+
+[source,xml]
+----
+<settings>
+    <localRepository>/tmp/richfaces-release-localRepository</localRepository>
+
+    <mirrors>
+        <mirror> 
+            <id>jboss-staging-repository-group</id> 
+            <mirrorOf>*,!jboss-qa-releases-repository</mirrorOf> 
+            <name>JBoss.org Staging Repository Group</name> 
+            <url>https://repository.jboss.org/nexus/content/groups/staging</url> 
+        </mirror>
+    </mirrors>
+
+    <servers>
+        <server>
+            <id>jboss-releases-repository</id>
+            <username>{your_email}</username>
+            <password>{your_password}</password>
+        </server>
+    </servers>
+
+</settings>
+----
+
+Using these settings you will use separated local repository which will be popullated only with artifacts from JBoss Staging repository and released artifacts. That way you can verify that the build is reproducible using JBoss Maven repositories.
+
+=== Environment
+
+|===
+| Maven | 3.0.4
+
+| JDK | Oracle JDK 1.6.0_33
+
+| MAVEN_OPTS | -Xmx1024m -XX:MaxPermSize=512m
+|===
+
+=== Notify Development Team
+
+Also the person performing any of the releases below should also post a message to the RichFaces developer forum stating:
+
+____
+The release process for <4.1.0.M1> is about to begin. Further commits into develop branch will not be considered in release.
+____
+
+When the release is completed be sure to post to the forums again.
+
+=== Review Issue Tracker Status and Continuous Integration
+
+Before starting any release steps, make sure the CI tests pass and that all issues scheduled to particular version are resolved.
+
+=== Finish Release Notes
+
+`build/dist/release-notes.txt` should be updated before starting with release (you can use the raw output of JIRA's Release Notes for particular version.
+
+
+== Tagging Core Framework Modules
+
+* Be sure that any updates/releases to supporting modules (below) have been released if required.
+* Follow the JBoss milestone/CR/Final naming convention outlined here: JBossProjectVersioning
+
+=== Branch & Tag Naming Conventions
+
+|===
+| Description   | Release Development Origin  | Release Development Branch | Development POM version | Release Branch | Release POM version | Tag | Next Development POM version
+
+| Milestone 1 | develop | develop | 4.1.0-SNAPSHOT  | release/4.1.0.M1  | 4.1.0.20110805-M1 | 4.1.0.20110805-M1 | 4.1.0-SNAPSHOT  
+
+| Release Candidate | develop | develop | 4.1.0-SNAPSHOT  | release/4.1.0.CR1 | 4.1.0.CR1 | 4.1.0.20110906-CR1  | 4.1.0-SNAPSHOT
+
+| Final Release [Minor Release] | develop | develop | 4.1.0-SNAPSHOT  | release/4.1.0.Final | 4.1.0.Final | 4.1.0.20111007-Final  | 4.2.0-SNAPSHOT
+
+| Micro Release | tag: 4.1.0.20111007-Final | release/release-develop-4.1.1 | 4.1.1-SNAPSHOT  | release/4.1.1.Final | 4.1.1.Final | 4.1.1.20111009-Final  | -
+
+| Hotfix  | tag: 4.1.1.20111009-Final | hotfix/4.1.1.Final_RFPL-1234  | 4.1.1-SNAPSHOT  | release/4.1.1.Final_RFPL-1234 | 4.1.1.Final_RFPL-1234 | 4.1.1.20111009-Final_RFPL-1234  | -
+|===
+
+=== Procedure
+
+Checkout core project modules
+
+----
+$ git clone git@github.com:richfaces/build.git
+$ bash build/scripts/richgit.sh
+----
+
+(optional: diverge a Release Development Branch from Release Development Origin - optional when they equals)
+ 
+----
+$ bash build/scripts/richgit.sh -e git checkout <release_development_origin> -b <release_development_branch>
+----
+
+(optional: do an preparation for divering Release Branch (e.g. cherry-picking commits to be included in Micro Release or Hotfix))
+
+----
+$ cd components/
+$ git cherry-pick <commit_id_1>
+$ git cherry-pick <commit_id_2>
+----
+
+diverge a release branch
+
+----
+$ bash build/scripts/richgit.sh -e git checkout <release_development_branch> -b <release_branch>
+----
+
+Bump to timestamped release versions <4.1.0.20110805-M1>
+ 
+----
+$ bash build/scripts/change_version.sh -r -o <development_pom_version> -n <release_pom_version>
+$ bash build/scripts/richgit.sh -e git add -A
+$ bash build/scripts/richgit.sh -e "git commit -m 'changing version to <release_pom_version>'"
+----
+ 
+In next steps, be sure to point maven to local copy of release settings.xml and to activate profiles build and release in each step
+
+Run dry run to verify build with release versions
+
+----
+$ cd build/
+$ mvn -s <settings.xml> -P build,release clean verify
+----
+
+If there are problems with build ( failed tests, SNAPSHOT dependencies, etc...) communicate with development team, and resolve.
+
+Push Tag to the repository
+
+----
+$ bash build/scripts/richgit.sh -e 'git tag -a <tag> -m "Tagging release <tag>"'
+$ bash build/scripts/richgit.sh -e git push origin <tag>
+----
+
+(when building Hotfix, the origin you are pushing to can be your own repository - the branches and tags can be easily merged into upstream repository later - it means you also can't break anything in upstream repository)
+
+Publish Release Branch to repository
+
+----
+$ bash build/scripts/richgit.sh -e git push origin <release_branch>
+----
+
+Bump the develop branch version and push it (if necessary = only for Final releases)
+
+----
+$ bash build/scripts/richgit.sh -e git checkout develop
+$ bash build/scripts/change_version.sh -r -o <4.1.0-SNAPSHOT> -n <4.2.0-SNAPSHOT>
+$ bash build/scripts/richgit.sh -e git add -A
+$ bash build/scripts/richgit.sh -e 'git commit -m "bumping version to 4.1.1-SNAPSHOT"'
+$ bash build/scripts/richgit.sh -e git push origin develop:develop
+
+$ bash build/scripts/richgit.sh -e git checkout release/4.1.0.Final
+----
+
+== Release Staging
+
+Now you can perform the actual release build from the tag, and deploy using
+(you can use install instead of deploy in case you want just build release locally)
+
+----
+$ mvn -s <settings.xml> -P build,release clean deploy
+----
+ 
+This will build from the tag, and perform the actual uploads to the JBoss staging repo.
+
+If there is authentication problems contact project lead
+
+If there are errors uploading for some reason you need to "drop" what ever was staged following: Maven Deploying a Release
+
+Then attempt the build again.  If the problems continue contact project lead
+Next you need to "close" the stage following the Maven Deploying a Release with the comment "RichFaces <rel-ver> Stage"
+ 
+The release is now staged, and the release jira should be updated with links to the public stage, and the private stage URL.  See the Milestone 3 release jira for an example.
+
+== Releasing/Dropping
+
+Once QE and development have verified and cleared the staged release following the release testing process, next step is to promote the staged bits to JBoss maven release repo.
+ 
+This is very easy.  Simply log into the nexus server following https://community.jboss.org/docs/DOC-15179[Maven Deploying a Release] and "promote" the release.
+ 
+If QE and development find issues, and the release needs to be dropped follow the directions above, and "drop" the stage.
+
+
+== Merging Release branch with Master branch
+
+One more step is required to finish the release process - publish release branches on GitHub.
+It is recommended to do following process for each framework repository separately since there may occur merge conflicts.
+ 
+update the develop and master branches (in order to merge to latest state)
+
+----
+$ bash build/scripts/richgit.sh -e git fetch origin
+$ bash build/scripts/richgit.sh -e git checkout develop
+$ bash build/scripts/richgit.sh -e git rebase origin/develop
+$ bash build/scripts/richgit.sh -e git checkout master
+$ bash build/scripts/richgit.sh -e git rebase origin/master
+----
+
+for each module {archetype-simpleapp, build, core, components, dev-examples, showcase}
+merge release branch to develop and to master
+note: the merging into the master is done only for Final releases, since it should contain only stable bits (4.2.0.Final, 4.2.1.Final, 4.3.0.Final; no 4.2.1.CR1 or 4.3.0.M1)
+
+----
+$ git checkout develop
+$ git merge --no-ff <release/4.1.0.M1>
+# resolve merge conflicts
+$ git checkout master
+$ git merge --no-ff <release/4.1.0.M1>
+# resolve merge conflicts
+$ git branch -d <release/4.1.0.M1>
+----
+
+bump versions on release branch to new development version (don't forget to increase minor version in Final release (4.1.0 becomes 4.2.0), do not increase it in releases before Final) - warning: new version needs to correspond with current develop version
+
+----
+$ bash build/scripts/change_version.sh -r -o <4.1.0.20110805-M1> -n <4.1.0-SNAPSHOT>
+$ bash build/scripts/richgit.sh -e git add -A
+$ bash build/scripts/richgit.sh -e "git commit -m 'changing versions back to development: <4.1.0-SNAPSHOT>'"
+----
+
+try the snapshot build
+
+----
+$ cd build/
+$ mvn clean verify -Pbuild
+----
+
+publish merged branches
+warning: be sure to do not push changes in master when this is not Final release! (see note in step (2))
+
+----
+$ bash build/scripts/richgit.sh -e git push origin develop:develop
+$ bash build/scripts/richgit.sh -e git push origin master:master
+----
+
+remove the remote release branch
+
+----
+$ bash build/scripts/richgit.sh -e git push origin :release/<4.1.0.M1>
+----
