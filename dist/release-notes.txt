@@ -1,3 +1,10 @@
+New in Version 4.3.3
+--------------------
+
+    Bug
+    [RF-13089] - Use a LookAheadObjectInputStream for object deserialisation BZ#973570
+    [RF-13053] - Showcase: push doesn't work on EAP 6.1
+
 New in Version 4.3.2
 --------------------
 
