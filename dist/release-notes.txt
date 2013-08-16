@@ -1,3 +1,48 @@
+New in Version 4.3.4
+--------------------
+
+    Bug
+    [RF-11275] - showcase - rich:popup - Sample Modal panel - after changing the size of popup there is double shadow
+    [RF-11691] - [rich:select] value disappears if you click between list and value
+    [RF-12345] - JS error when pressing ESC on an open inplaceSelect in IE
+    [RF-12853] - rich:inplaceSelect: JS API bugs
+    [RF-12929] - PickList change event not firing correctly when ordering objects in target area
+    [RF-12943] - ExtendedDataTable: clearing of filter input doesnt work correctly
+    [RF-12989] - Documentation for togglePanelItem is wrong and 4.2.2 components are not working anymore in 4.3.0.Final
+    [RF-13010] - Popup panel inside popup panel: button not rendered in IE10
+    [RF-13017] - richfaces-bom 4.3.2.Final, JSF-API 2.1.0 not compatible
+    [RF-13035] - Simpleapp Archetype: mobile version shows modal dialog
+    [RF-13046] - EDT in EDT: when @frozenColumns is equal to number of columns then there is no vertical scroller in EDT
+    [RF-13053] - Showcase: push doesn't work on EAP 6.1
+    [RF-13057] - Kitchensink Archetype: update enterprise version of JBoss BOM
+    [RF-13058] - Kitchensink Archetype: JSF community site link doesn't work
+    [RF-13059] - Richfaces quickstart README files contain links that to be updated
+    [RF-13060] - Issue in initializing the list of selected items in a Picklist
+    [RF-13086] - Popup panel: button's label is invisible in IE8
+    [RF-13094] - Wrong extendedDataTable header widths when narrowing columns
+    [RF-13098] - Regression: mediaOutput broken for CDI MediaData beans
+    [RF-13102] - rich:calendar with date pattern- input gets cleared on click
+    [RF-13106] - Quickstart names in the POM files are not consistent and often are not clear
+    [RF-13107] - ajaxRenderer component are renderer even though they are in non-active switchable panel, causing JSF to fail to update DOM
+    [RF-13117] - ExtendedDataTable Sorting resets $(window).resize Events
+    [RF-13119] - kitchensink-rf test-ds.xml does not use a unique datasource JNDI name
+    [RF-13125] - a4j:log does swallow the message from jsf.js's sendError method
+    [RF-13133] - ExtendedDataTable: filterType=custom doesn't work when mixing custom and built-in filter columns
+    [RF-13136] - a4j:log with mode=console doesn't take log level into consideration
+    [RF-13137] - a4j:log - wrong log levels in attribute description
+    [RF-13140] - PopupPanel: Hide @visualOptions and @keepVisualState options which doesn't weren't implemented yet
+
+    Component Upgrade
+    [RF-13132] - Upgrade JBoss Java EE BOMs to 3.0.2.Final
+
+    Enhancement
+    [RF-12784] - Showcase readme - update deployment from eclipse part
+    [RF-13097] - showcase: update readme with password for jbas7 profile
+
+    Feature Request
+    [RF-13038] - Command button/link: attribute tabindex missing
+    [RF-13063] - RichFacesInputNumberSlider setValueByDragging
+
 New in Version 4.3.3
 --------------------
 
