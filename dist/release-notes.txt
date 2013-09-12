@@ -33,23 +33,29 @@ New in Version 4.3.4
     [RF-13140] - PopupPanel: Hide @visualOptions and @keepVisualState options which weren't implemented yet
     [RF-13142] - Showcase: mediaOutput sample is not working with MyFaces
     [RF-13149] - a4j:push in Metamer doesn't have subtopic name
-    [RF-13154] - a4j:push fails with CNFE for org.apache.coyote.http11.upgrade.UpgradeInbound on latest EAP 6
+    [RF-13161] - rich:notifyMessages CSS incorrect on MyFaces 2.x
     [RF-13174] - Correct the WFK version of the JBoss BOM used in the archetypes
 
     Component Upgrade
     [RF-13132] - Upgrade JBoss Java EE BOMs to 3.0.2.Final
+    [RF-13154] - Upgrade Atmosphere to 1.0.17 (a4j:push fails with CNFE for org.apache.coyote.http11.upgrade.UpgradeInbound on latest EAP 6)
 
     Enhancement
     [RF-12784] - Showcase readme - update deployment from eclipse part
     [RF-13097] - showcase: update readme with password for jbas7 profile
     [RF-13150] - Remove JMS functionality from the RichFaces showcase
     [RF-13153] - Update version.compiler.plugin and jboss.maven.plugin versions in the quickstart POM files
+    [RF-13169] - Replace hardcoded version in Arquilian FundamentalTestConfiguration with project version property - from pom file
 
     Feature Request
     [RF-13038] - Command button/link: attribute tabindex missing
     [RF-13063] - RichFacesInputNumberSlider setValueByDragging
+    [RF-13155] - Unable to trigger hidden FileUpload in IE with an associated Label: missing Id on generated <input type=“file“>
     [RF-13159] - Add Maven compiler properties and remove Maven plugin from the the quickstart POM files
     [RF-13185] - Quickstarts: Modify GAV to use org.jboss.quickstarts.rf
+
+    Sub-task
+    [RF-13189] - Update jquery-atmosphere.js to 1.0.17 in 4.3.x
 
 New in Version 4.3.3
 --------------------
