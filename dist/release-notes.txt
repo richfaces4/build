@@ -35,6 +35,7 @@ New in Version 4.3.4
     [RF-13149] - a4j:push in Metamer doesn't have subtopic name
     [RF-13161] - rich:notifyMessages CSS incorrect on MyFaces 2.x
     [RF-13174] - Correct the WFK version of the JBoss BOM used in the archetypes
+    [RF-13195] - Showcase: Unauthorized deserialization attempt with MyFaces
 
     Component Upgrade
     [RF-13132] - Upgrade JBoss Java EE BOMs to 3.0.2.Final
@@ -50,7 +51,6 @@ New in Version 4.3.4
     Feature Request
     [RF-13038] - Command button/link: attribute tabindex missing
     [RF-13063] - RichFacesInputNumberSlider setValueByDragging
-    [RF-13155] - Unable to trigger hidden FileUpload in IE with an associated Label: missing Id on generated <input type=“file“>
     [RF-13159] - Add Maven compiler properties and remove Maven plugin from the the quickstart POM files
     [RF-13185] - Quickstarts: Modify GAV to use org.jboss.quickstarts.rf
 
