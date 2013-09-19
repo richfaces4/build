@@ -36,6 +36,7 @@ New in Version 4.3.4
     [RF-13161] - rich:notifyMessages CSS incorrect on MyFaces 2.x
     [RF-13174] - Correct the WFK version of the JBoss BOM used in the archetypes
     [RF-13195] - Showcase: Unauthorized deserialization attempt with MyFaces
+    [RF-13205] - Photoalbum: Hibernate error during deployment
 
     Component Upgrade
     [RF-13132] - Upgrade JBoss Java EE BOMs to 3.0.2.Final
