@@ -112,7 +112,7 @@ $ git cherry-pick <commit_id_1>
 $ git cherry-pick <commit_id_2>
 ----
 
-diverge a release branch
+(optional: diverge a release branch - the development can proceed on the `master` branch when no paralell development is expected - in that case, we can use the `master` as a release branch)
 
 ----
 $ bash build/scripts/richgit.sh -e git checkout <release_development_branch> -b <release_branch>
