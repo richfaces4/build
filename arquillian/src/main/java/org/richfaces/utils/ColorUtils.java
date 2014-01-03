@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.apache.commons.lang.Validate;
+import org.jboss.arquillian.core.spi.Validate;
 
 /**
  * Provides Color manipulations and functionality.
@@ -43,7 +43,7 @@ public final class ColorUtils {
      * @return integer value of color derived from string representation
      */
     public static int convertToInteger(String colorValue) {
-        Validate.notNull(colorValue);
+        Validate.notNull(colorValue, "colorValue must not be null");
 
         int result = 0;
 
