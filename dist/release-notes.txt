@@ -1,3 +1,61 @@
+New in Version 4.3.5
+--------------------
+
+    Epic
+    [RF-13047] - Implement improvements to the photoalbum application
+
+    Bug
+    [RF-11469] - autocomplete method does not resolve bean if ui:included and only one parameter provided
+    [RF-11973] - rich:contextMenu - after ajax re-render of table contextMenu no longer works
+    [RF-12811] - VDL Documentation: rich:calendar is missing attribute "maxlength"
+    [RF-12813] - rich:panelMenuItem executes action even if disabled attribute evaluates to true
+    [RF-13172] - rich:toolbarGroup location="right" doesn't work if toolbarGroup location="left" contains not rendered values
+    [RF-13208] - Push: error "not well-formed" appears in browser console in Firefox - make messages a valid XML
+    [RF-13220] - Quickstart - Remove references to AS 7.1 in the RichFaces quickstarts
+    [RF-13239] - Popup panel: CSS class rf-pp-hdr contains invalid property repeat-x
+    [RF-13252] - a4j:ajax includes jsf.js script twice
+    [RF-13257] - PhotoAlbum: uploading and deleting images
+    [RF-13266] - mediaOutput not working anymore on Glassfish3 and EAP6.1
+    [RF-13287] - rich:extendedDataTable column resizing with ajax loading not working properly
+    [RF-13292] - Autocomplete: up and down arrow keys not working in Opera
+    [RF-13298] - Richfaces BOM manages a non Maven Central dependency
+    [RF-13342] - archetype-simpleapp: facelet with name 'title' is not defined in template, but it is used in the sample
+    [RF-13358] - rich:panelMenuGroup allowing actions executions even if originally disabled
+    [RF-13397] - a4j:push not working with Internet Explorer >= 10
+    [RF-13455] - The rich:tabPanel no longer visits tab header facets while rendering a response.
+    [RF-13464] - Photoalbum: bad positioning of progressBar for G+/FB login on Firefox
+    [RF-13465] - Photoalbum: cannot run album slideshow when an image has been added
+    [RF-13466] - Photoalbum: editor for creating comments has not visible toolbar
+    [RF-13467] - Photoalbum: wrong selector in js function when selecting album from multiple album groups
+    [RF-13468] - Photoalbum build fails with JDK 6
+    [RF-13471] - Photoalbum: search: option for search in own albums is not visible when logged in
+    [RF-13473] - Photoalbum: cannot open help for fileUpload and dataScroller
+
+    Component Upgrade
+    [RF-13277] - Upgrade Atmosphere to 1.0.18
+    [RF-13310] - Upgrade Graphene and Warp in 4.3 branch
+
+    Enhancement
+    [RF-13274] - Use QSTools:archetypeSync to keep the kitchensink archetype synchronized with the kithensink-rf quickstart
+    [RF-13314] - Deprecate reslib resource files
+    [RF-13439] - Photoalbum - update help section
+    [RF-13462] - Photoalbum: improvements for adding album and album groups
+    [RF-13463] - Photoalbum: improvements for adding images
+
+    Feature Request
+    [RF-12949] - Create a set of Photoalbum smoke tests which will verify it starts and that the basic features works
+    [RF-13227] - Prepare the RichFaces 4.3.x photoalbum for release
+    [RF-13305] - Autocomplete: i must press button twice for popup window
+    [RF-13306] - Autocomplete: initialize value from DOM (was: ignored API call .setValue(''))
+
+
+    Patch
+    [RF-13268] - Typo in LookAheadObjectInputStream.java
+
+    Task
+    [RF-13404] - Port the RichFaces 5 improvements back to RichFaces 4.3
+    [RF-13405] - Merge the photoalbum fixes from QE
+
 New in Version 4.3.4
 --------------------
 
