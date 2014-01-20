@@ -30,6 +30,12 @@ New in Version 4.3.5
     [RF-13468] - Photoalbum build fails with JDK 6
     [RF-13471] - Photoalbum: search: option for search in own albums is not visible when logged in
     [RF-13473] - Photoalbum: cannot open help for fileUpload and dataScroller
+    [RF-13482] - Photoalbum: after edit user profile view is opened the application does not respond correctly
+    [RF-13483] - Photoalbum: Hibernate error during deployment
+    [RF-13484] - Photoalbum: cannot interact with some components in images search result view
+    [RF-13485] - Photoalbum: cannot login with FB account
+    [RF-13486] - Photoalbum: viewing g+ albums improvements
+    [RF-13487] - Photoalbum: viewing FB albums improvements
 
     Component Upgrade
     [RF-13277] - Upgrade Atmosphere to 1.0.18
@@ -41,13 +47,15 @@ New in Version 4.3.5
     [RF-13439] - Photoalbum - update help section
     [RF-13462] - Photoalbum: improvements for adding album and album groups
     [RF-13463] - Photoalbum: improvements for adding images
+    [RF-13479] - Re-organize files/folders in the top-level webapp folder
+    [RF-13480] - Java package re-structure for the photoalbum demo
+    [RF-13490] - Photoalbum: popup panel styling doesn't fit the overall styling of an application
 
     Feature Request
     [RF-12949] - Create a set of Photoalbum smoke tests which will verify it starts and that the basic features works
     [RF-13227] - Prepare the RichFaces 4.3.x photoalbum for release
     [RF-13305] - Autocomplete: i must press button twice for popup window
     [RF-13306] - Autocomplete: initialize value from DOM (was: ignored API call .setValue(''))
-
 
     Patch
     [RF-13268] - Typo in LookAheadObjectInputStream.java
