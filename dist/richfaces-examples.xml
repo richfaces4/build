@@ -19,7 +19,7 @@
             <includes>
                 <!--include>org.richfaces.examples:components</include -->
                 <include>org.richfaces.examples:richfaces-showcase</include>
-                <!--<include>org.richfaces.examples:photoalbum</include>-->
+                <include>org.richfaces.examples:richfaces-photoalbum</include>
             </includes>
 
             <sources>

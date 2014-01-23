@@ -64,6 +64,13 @@
             <classifier>tomcat6</classifier>
         </dependency>
 
+        <dependency>
+            <groupId>org.richfaces.examples</groupId>
+            <artifactId>richfaces-photoalbum</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+
         <!-- Archetypes -->
         <dependency>
             <groupId>org.richfaces.archetypes</groupId>
