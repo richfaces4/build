@@ -36,8 +36,8 @@ fork_all_modules() {
     . $SCRIPTS/resty
     resty https://api.github.com
     for MODULE in $MODULES; do
-        if [[ "$USERNAME" != "richfaces4" ]]; then
-            RESULT=$((POST /repos/richfaces4/$MODULE/forks -u "$USERNAME:$PASSWORD" -v) 2>&1)
+        if [[ "$USERNAME" != "richfaces" ]]; then
+            RESULT=$((POST /repos/richfaces/$MODULE/forks -u "$USERNAME:$PASSWORD" -v) 2>&1)
             if [[ $RESULT =~ "Status: 401 Unauthorized" ]]; then
                 echo "Github username / password is incorrect. Exiting."
                 exit 1
@@ -60,9 +60,9 @@ checkout_all_modules() {
                 echo "Module $MODULE already exists. Skipping over it."
                 continue
             fi
-            if [[ "$USERNAME" != "richfaces4" ]]; then
+            if [[ "$USERNAME" != "richfaces" ]]; then
                 pushd $MODULE >/dev/null
-                    git remote add upstream "https://github.com/richfaces4/$MODULE.git"
+                    git remote add upstream "https://github.com/richfaces/$MODULE.git"
                 popd >/dev/null
             fi
         done
@@ -82,7 +82,7 @@ pull_upstream_all_modules() {
             module_does_not_exist
             continue
         fi
-        if [[ "$USERNAME" != "richfaces4" ]]; then
+        if [[ "$USERNAME" != "richfaces" ]]; then
             pushd $MODULE >/dev/null
             RESULT=`git stash`
             echo -n $Brown
@@ -115,7 +115,7 @@ usage() {
     cat << EOF
 usage: $0 options
 
-Clones the modules ($MODULES) from github using either your forked modules or the richfaces4 modules. If cloning forked modules it will automatically set the upstream remote.
+Clones the modules ($MODULES) from github using either your forked modules or the richfaces modules. If cloning forked modules it will automatically set the upstream remote.
 
 OPTIONS:
    -h      Show this message.
@@ -139,7 +139,7 @@ get_resty_if_required() {
 }
 
 QUIET="-q"
-USERNAME=richfaces4
+USERNAME=richfaces
 PASSWORD=""
 STATUS=false
 TYPE=ssh
@@ -171,7 +171,7 @@ do
             echo "$CURL not found you cannot use automatic forking."
             exit 1
         fi
-        if [[ $USERNAME != "richfaces4" ]]; then
+        if [[ $USERNAME != "richfaces" ]]; then
             read -p "Enter your Github password:" -s PASSWORD
             echo ""
         fi
@@ -223,7 +223,7 @@ elif [[ $STATUS == true ]]; then
     for_each_module 'git status | grep --color -E "On branch \w*|$"'
 else
     if [[ $PULL == false ]]; then
-        if [[ $FORK == true && $USERNAME != "richfaces4" ]]; then
+        if [[ $FORK == true && $USERNAME != "richfaces" ]]; then
             fork_all_modules
         fi
         checkout_all_modules
