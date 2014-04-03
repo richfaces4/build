@@ -1,3 +1,22 @@
+New in Version 4.3.6
+--------------------
+
+    Bug
+    [RF-13250] - Extreme memory usage in RF4.3.4.Final and not in RF4.3.3.Final
+    [RF-13453] - There is no way to extend class org.richfaces.renderkit.ExtendedDataTableRenderer properly
+    [RF-13511] - Photoalbum: unite behaviour of dataScroller in FB/G+ and in own/predefined albums
+    [RF-13531] - selects: cannot select option on IE11
+    [RF-13541] - Photoalbum - JPA tests
+    [RF-13549] - Photoalbum: cannot upload image
+    [RF-13559] - Backport RF-13018 (a4j:commandButton wrong actions performed) to RF 4
+    [RF-13569] - Photoalbum: the change of users avatar doesn't work
+
+    Enhancement
+    [RF-13492] - Photoalbum: cancel selection in other r:trees when browsing an album navigation panel
+
+    Patch
+    [RF-13540] - Websphere incarnation of MyFaces renderes optimized resources multiple times
+
 New in Version 4.3.5
 --------------------
 
