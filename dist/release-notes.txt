@@ -1,3 +1,26 @@
+New in Version 4.3.7
+--------------------
+
+    Bug
+    [RF-11417] - Tab: investigate why @action does not work
+    [RF-11427] - rich:tab - actionListener
+    [RF-11736] - rich:popupPanel x domElementAttachment="parent"
+    [RF-13569] - Photoalbum: the change of users avatar doesn't work
+    [RF-13592] - a4j:push doesn't work after rendering
+    [RF-13613] - ContextMenu doesn't show on mouseover
+    [RF-13616] - PopupPanel autosize with togglePanel doesn't resize
+
+    Component Upgrade
+    [RF-13364] - Upgrade Mojarra to 2.1.28 in RichFaces 4.3.x
+
+    Enhancement
+    [RF-13478] - VDL documentation typos
+    [RF-13506] - Incorrect information on showcase fileUpload sample page (maxRequestSize description)
+    [RF-13564] - rich:pickList shows an outline when clicked
+
+    Task
+    [RF-13512] - Photoalbum: port fix from RF-13498 to RF4 photoalbum
+
 New in Version 4.3.6
 --------------------
 
